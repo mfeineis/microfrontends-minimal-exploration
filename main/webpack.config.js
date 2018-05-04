@@ -7,17 +7,15 @@ const merge = require('webpack-merge');
 const devConfig = ({ rootDir }) => ({
     devServer: {
         before(app) {
+            // You might want to put your fragments behind a cache
+            app.use('/counter', express.static(path.resolve(rootDir, 'counter')));
+            app.use('/search', express.static(path.resolve(rootDir, 'search')));
             app.use('/shop', express.static(path.resolve(rootDir, 'shop')));
         },
-        //compress: true,
         contentBase: path.resolve(rootDir, "./main"),
-        //host: "0.0.0.0",
         port: 8081,
     },
     mode: 'development',
-    //proxy: {
-    //    "/api": "http://localhost:3000"
-    //},
 });
 
 module.exports = (env = {}, argv = {}) => {

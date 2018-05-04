@@ -4,6 +4,7 @@
   "description": "An exploration of how to structure microservice widgets into a cohesive UI",
   "main": "dist/index.js",
   "scripts": {
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

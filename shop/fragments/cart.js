@@ -32,11 +32,18 @@
 
     const params = getScriptParams();
     const root = document.querySelector(`#${params.where}`);
+    const option = root.getAttribute('data-option');
 
-    const hello = document.createElement('div');
-    hello.id = params.where;
-    hello.innerHTML = `Hello World! (from ${params.id})`;
+    const cart = document.createElement('div');
+    cart.id = params.where;
+    cart.innerHTML = `Shopping Cart - from ${params.id} with option=${option}`;
 
-    root.parentNode.replaceChild(hello, root);
+    root.parentNode.replaceChild(cart, root);
 
+    if (params.id === "cart1") {
+        // This cart will listen to any event that's coming through...
+        document.addEventListener('counter.reset', () => {
+            cart.innerHTML += '|RESET';
+        });
+    }
 }());

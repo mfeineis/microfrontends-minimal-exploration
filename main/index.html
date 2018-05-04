@@ -3,15 +3,61 @@
 <head>
     <meta charset="utf-8">
     <title>Main page</title>
+    <!--
+       * In general shared dependencies will create coupling which you may want to avoid
+         although you might agree on the polyfills for your environment, you can of course
+         just include them in your widget builds - your choice.
+       * Depending on how you do styling you could provide a reset style or if you employ
+         a design system you could have as a requirement that the CSS file needs to be provided by
+         the embedding page.
+    -->
+    <script src="/custom-elements.min.js"></script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=CustomEvent,classList,Array.from"></script>
 </head>
 <body>
     <header>
-        <h1>Some heading</h1>
-        <div id="header-cart">
-            Loading cart...
-            <script async defer src="/shop/fragments/cart.js?id=header-cart&where=header-cart"></script>
+        <h1>Your awesome main page</h1>
+        <div id="header-cart" data-option="some-option">
+            Loading header cart...
+            <script async src="/shop/fragments/cart.js?id=cart1&where=header-cart"></script>
         </div>
-        <p>More content</p>
     </header>
+    <main>
+        <div id="content-search" data-correlation-id="sparky-sparky-boom-man" data-feature-failfast>
+            Loading search...
+            <script async src="/search/fragments/search.js?where=content-search"></script>
+        </div>
+        <p>Some main content</p>
+
+        <p>Counter incremented: <span id="counter-incremented"></span> <button id="reset-counter-button">Reset</button> </p>
+
+        <script id="elm-counter" data-initial-value="5" async src="/counter/fragments/counter.js?where=elm-counter"></script>
+    </main>
+    <footer>
+        <div id="footer-cart" data-option="another-option">
+            Loading footer cart...
+            <script async src="/shop/fragments/cart.js?id=cart2&where=footer-cart"></script>
+        </div>
+    </footer>
+
+    <script>
+    // This page is able to communicate with widgets via events dispatched on `document`
+    (function () {
+        let counterIncremented = 0;
+
+        document.addEventListener('counter.incremented', e => {
+            console.log('counter.incremented', e);
+            counterIncremented += 1;
+
+            document.querySelector('#counter-incremented').innerHTML =
+                counterIncremented + ' ' + JSON.stringify(e.detail);
+        });
+
+        document.querySelector('#reset-counter-button').addEventListener('click', () => {
+            document.dispatchEvent(new CustomEvent('counter.reset'));
+        });
+
+    }());
+    </script>
 </body>
 </html>
