@@ -1,0 +1,31 @@
+{
+  "name": "micro-frontends-exploration",
+  "version": "0.1.0",
+  "description": "An exploration of how to structure microservice widgets into a cohesive UI",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfeineis/micro-frontends-exploration.git"
+  },
+  "keywords": [
+    "micro-frontends",
+    "elm",
+    "node"
+  ],
+  "author": "Martin Feineis",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/mfeineis/micro-frontends-exploration/issues"
+  },
+  "homepage": "https://github.com/mfeineis/micro-frontends-exploration#readme",
+  "devDependencies": {
+    "webpack": "^4.7.0",
+    "webpack-cli": "^2.1.2",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2"
+  },
+  "dependencies": {}
+}
