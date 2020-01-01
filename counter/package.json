@@ -10,9 +10,9 @@
   "author": "Martin Feineis",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "elm": "^0.18.0",
-    "elm-webpack-loader": "^4.5.0",
-    "webpack": "^4.7.0",
-    "webpack-cli": "^2.1.2"
+    "elm": "0.18.0",
+    "elm-webpack-loader": ">=4.5.0",
+    "webpack": ">=4.7.0",
+    "webpack-cli": ">=2.1.2"
   }
 }
